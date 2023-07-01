@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<meta charset="UTF-8">
+    <title>Success</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+        <h1>Registration Successful</h1>
+        <p th:text="${message}"></p>
+
+        <h2>Latest Registered User</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${latestUser.id}"></td>
+                    <td th:text="${latestUser.name}"></td>
+                    <td th:text="${latestUser.email}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="showButton">Show All Registered Users</button>
+
+        <div id="registeredUsers" class="hidden">
+            <h2>All Registered Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("showButton").addEventListener("click", function() {
+            document.getElementById("registeredUsers").classList.remove("hidden");
+        });
+    </script>
+
+</body>
+</html>
